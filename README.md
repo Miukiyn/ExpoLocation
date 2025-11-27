@@ -1,54 +1,80 @@
-<<<<<<< HEAD
-# Welcome to your Expo app 👋
+# 📦 Projeto Rastreador Logístico - Fase 1
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este repositório contém o código fonte da **Fase 1** do sistema de rastreamento de entregas. O objetivo desta fase é estabelecer a comunicação básica entre o entregador (App Mobile) e a central (Backend), enviando coordenadas GPS em tempo real.
 
-## Get started
+## 🏗️ Arquitetura da Fase 1
 
-1. Install dependencies
+O sistema funciona no seguinte fluxo de dados:
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```mermaid
+graph LR
+    A[📱 App Mobile] -- Envia Latitude/Longitude --> B[☁️ Backend API]
+    B -- Salva --> C[(🗄️ Banco de Dados)]
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🚦 Status do Desenvolvimento
 
-## Learn more
+Abaixo, o status atual de cada componente planejado para esta fase:
 
-To learn more about developing your project with Expo, look at the following resources:
+### 📱 1. Frontend Mobile (React Native + Expo)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+* [x] Criação da estrutura do projeto (Expo Router)
+* [x] Configuração de permissões de usuário (GPS)
+* [x] Captura de coordenadas em tempo real (Latitude/Longitude)
+* [x] Lógica de envio HTTP (POST Request)
+* [x] Interface visual de feedback (Status de envio)
 
-## Join the community
+### 🖥️ 2. Backend & API (Node.js)
 
-Join our community of developers creating universal apps.
+* [ ] **Criação do Servidor Express** (🚧 A Fazer)
+* [ ] **Rota POST `/gps` para receber dados** (🚧 A Fazer)
+* [ ] **Validação dos dados recebidos** (🚧 A Fazer)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
-=======
-# ExpoLocation
->>>>>>> 33cfceb1536dd4cea9710da013332fac362b41f1
+### 🗄️ 3. Persistência de Dados
+
+* [ ] **Integração com Banco de Dados (SQLite/JSON)** (🚧 A Fazer)
+
+---
+
+## ⚙️ Configuração do App Mobile
+
+Como o Backend ainda será implementado localmente, é necessário apontar o App para o IP do seu computador.
+
+1. Descubra seu IP local (no terminal: `ipconfig` ou `ifconfig`).
+2. Abra o arquivo `app/index.tsx`.
+3. Atualize a constante `backendUrl`:
+
+```ts
+// Substitua pelo seu IPv4
+const backendUrl = 'http://192.168.X.X:3000/gps';
+```
+
+---
+
+## 🚀 Como Rodar o App (Mobile)
+
+1. **Instale as dependências:**
+
+```bash
+npm install
+```
+
+2. **Inicie o servidor do Expo:**
+
+```bash
+npx expo start -c
+```
+
+3. **Abra no Celular:**
+
+* Utilize o app **Expo Go** para escanear o QR Code gerado no terminal.
+
+---
+
+## 🔮 Próximos Passos
+
+A próxima etapa imediata é o desenvolvimento do **Componente 2 (Backend)** para que o aplicativo pare de receber erros de conexão e comece a salvar os dados efetivamente.
+
+---
+
+*Projeto desenvolvido para fins de estudo de logística e geolocalização.*
